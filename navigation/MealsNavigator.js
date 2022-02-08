@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
 import { Platform } from "react-native";
 import CategoriesScreen from "../screens/CategoriesScreen";

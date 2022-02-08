@@ -10,6 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import FavoritesScreen from "./screens/FavoritesScreen";
 import MealsNavigator from "./navigation/MealsNavigator";
 import Colors from "./constants/Colors";
+import FavoritesNavigator from "./navigation/FavoritesNavigator";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -58,7 +59,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Favorites"
-          component={FavoritesScreen}
+          component={FavoritesNavigator}
           options={{
             tabBarIcon: (tabInfo) => {
               return (
