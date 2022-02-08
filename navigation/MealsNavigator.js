@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import "react-native-gesture-handler";
 import { Platform } from "react-native";
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
@@ -10,7 +9,7 @@ import HeaderButton from "../components/HeaderButton";
 
 const Stack = createNativeStackNavigator();
 
-const MealsNavigator = () => {
+const MealsNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -18,14 +17,35 @@ const MealsNavigator = () => {
           backgroundColor: Platform.OS === "android" ? Colors.primary : "white",
         },
         headerTintColor: Platform.OS === "android" ? "#fff" : Colors.primary,
+        headerTitleStyle: {
+          fontFamily: "open-sans-bold",
+        },
+        headerBackTitleStyle: {
+          fontFamily: "open-sans",
+        },
       }}
     >
       <Stack.Screen
         name="Categories"
         component={CategoriesScreen}
-        options={{
-          title: "Meal Categories",
-        }}
+        options={
+          ({
+            title: "Meal Categories",
+          },
+          {
+            headerLeft: () => (
+              <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                  title="Menu"
+                  iconName="ios-menu"
+                  onPress={() => {
+                    navigation.toggleDrawer();
+                  }}
+                />
+              </HeaderButtons>
+            ),
+          })
+        }
       />
       <Stack.Screen
         name="CategoryMeals"

@@ -1,13 +1,14 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import "react-native-gesture-handler";
 import { Platform } from "react-native";
 import Colors from "../constants/Colors";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
+import HeaderButton from "../components/HeaderButton";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 const Stack = createNativeStackNavigator();
 
-const FavoritesNavigator = () => {
+const FavoritesNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -15,12 +16,33 @@ const FavoritesNavigator = () => {
           backgroundColor: Platform.OS === "android" ? Colors.primary : "white",
         },
         headerTintColor: Platform.OS === "android" ? "#fff" : Colors.primary,
+        headerTitleStyle: {
+          fontFamily: "open-sans-bold",
+        },
+        headerBackTitleStyle: {
+          fontFamily: "open-sans",
+        },
       }}
     >
       <Stack.Screen
         name="Favorites"
         component={FavoritesScreen}
-        options={{ title: "Your Favorites" }}
+        options={
+          ({ title: "Your Favorites" },
+          {
+            headerLeft: () => (
+              <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                  title="Menu"
+                  iconName="ios-menu"
+                  onPress={() => {
+                    navigation.toggleDrawer();
+                  }}
+                />
+              </HeaderButtons>
+            ),
+          })
+        }
       />
       <Stack.Screen name="MealDetail" component={MealDetailScreen} />
     </Stack.Navigator>

@@ -4,8 +4,6 @@ import CategoryGridTile from "../components/CategoryGridTile";
 import { CATEGORIES } from "../data/dummy-data";
 
 const CategoriesScreen = ({ navigation }) => {
-  //console.log(props) to check out the navigation prop
-
   const renderGridItem = (itemData) => {
     return (
       <CategoryGridTile
