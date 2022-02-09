@@ -55,22 +55,7 @@ const MealsNavigator = ({ navigation }) => {
       <Stack.Screen
         name="MealDetail"
         component={MealDetailScreen}
-        options={
-          (({ route }) => ({ title: route.params.name }),
-          {
-            headerRight: () => (
-              <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <Item
-                  title="Favorite"
-                  iconName="ios-star"
-                  onPress={() => {
-                    console.log("Mark as favorite");
-                  }}
-                />
-              </HeaderButtons>
-            ),
-          })
-        }
+        options={({ route }) => ({ title: route.params.name })}
       />
     </Stack.Navigator>
   );

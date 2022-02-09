@@ -44,7 +44,11 @@ const FavoritesNavigator = ({ navigation }) => {
           })
         }
       />
-      <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+      <Stack.Screen
+        name="MealDetail"
+        component={MealDetailScreen}
+        options={({ route }) => ({ title: route.params.name })}
+      />
     </Stack.Navigator>
   );
 };

@@ -25,7 +25,6 @@ const MealList = ({ listData, navigation }) => {
     <View style={styles.list}>
       <FlatList
         data={listData}
-        keyExtractor={(item, index) => item.id}
         renderItem={renderMealItem}
         style={{ width: "100%" }}
       />
