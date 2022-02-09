@@ -15,8 +15,11 @@ const ListItem = (props) => {
 };
 
 const MealDetailScreen = ({ route, navigation }) => {
-  const availableMeals = useSelector((state) => state.meals.meals);
   const { mealId } = route.params;
+  const availableMeals = useSelector((state) => state.meals.meals);
+  const currentMealIsFav = useSelector((state) =>
+    state.meals.favoriteMeals.some((meal) => meal.id === mealId)
+  );
 
   const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
@@ -38,7 +41,7 @@ const MealDetailScreen = ({ route, navigation }) => {
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
             title="Favorite"
-            iconName="ios-star"
+            iconName={currentMealIsFav ? "ios-star" : "ios-star-outline"}
             onPress={toggleFavoriteHandler}
           />
         </HeaderButtons>
